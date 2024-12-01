@@ -1,43 +1,49 @@
 import db from "./db.js";
 
-async function newPostIt(title, content) {
-	await db.model.PostIt.create({
-		title: title,
-		content: content,
-	});
+async function newPostIt(title, text, subtitle, link, linkText) {
+    await db.model.PostIt.create({
+        title: title,
+        text: text,
+        subtitle: subtitle,
+        link: link,
+        linkText: linkText,
+    });
 }
 
 async function findPostIt(id) {
-	db.model.PostIt.findByPk(id).then((data) => {
-		return data.toJSON();
-	});
+    db.model.PostIt.findByPk(id).then((data) => {
+        return JSON.stringify(data);
+    });
 }
 
-async function updatePostIt(id, newTitle, newContent) {
-	db.model.PostIt.findByPk(id).then(async (data) => {
-		data.title = newTitle;
-		data.content = newContent;
-		await data.save();
-	});
+async function updatePostIt(id, title, text, subtitle, link, linkText) {
+    db.model.PostIt.findByPk(id).then(async (data) => {
+        (data.title = title),
+            (data.text = text),
+            (data.subtitle = subtitle),
+            (data.link = link),
+            (data.linkText = linkText);
+        await data.save();
+    });
 }
 
 async function deletePostIt(id) {
-	db.model.PostIt.findByPk(id).then(async (data) => {
-		await data.destroy();
-	});
+    db.model.PostIt.findByPk(id).then(async (data) => {
+        await data.destroy();
+    });
 }
 
 async function getPostIts() {
-	const data = await db.model.PostIt.findAll();
-	return data.map((postIt) => {
-		return postIt.toJSON();
-	});
+    const data = await db.model.PostIt.findAll();
+    return data.map((postIt) => {
+        return JSON.stringify(postIt);
+    });
 }
 
 export default {
-	newPostIt: newPostIt,
-	findPostIt: findPostIt,
-	updatePostIt: updatePostIt,
-	deletePostIt: deletePostIt,
-	getPostIts: getPostIts,
+    newPostIt: newPostIt,
+    findPostIt: findPostIt,
+    updatePostIt: updatePostIt,
+    deletePostIt: deletePostIt,
+    getPostIts: getPostIts,
 };

@@ -20,27 +20,51 @@ app.get("/PostIts", async (req, res) => {
 });
 
 app.get("/PostIts/:id", (req, res) => {
-	res.statusCode = 200;
-	res.setHeader("Content-Type", "text/html; charset=utf-8");
-	res.end(api.findPostIt(req.params.id));
+    try {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        res.end(api.findPostIt(req.params.id));
+    } catch (e) {
+        res.statusCode = 500;
+        console.log(e);
+        res.end("Internal server error");
+    }
 });
 
 app.post("/api/create", (req, res) => {
-	res.statusCode = 200;
-	res.setHeader("Content-Type", "text/html; charset=utf-8");
-	res.end(api.newPostIt(req.query.title, req.query.content));
+    try {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        res.end(api.newPostIt(req.query.title, req.query.content));
+    } catch (e) {
+        res.statusCode = 500;
+        console.log(e);
+        res.end("Internal server error");
+    }
 });
 
 app.post("/api/update", (req, res) => {
-	res.statusCode = 200;
-	res.setHeader("Content-Type", "text/html; charset=utf-8");
-	res.end(api.updatePostIt(req.query.id, req.query.title, req.query.content));
+    try {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        res.end(api.updatePostIt(req.query.id, req.query.title, req.query.content));
+    } catch (e) {
+        res.statusCode = 500;
+        console.log(e);
+        res.end("Internal server error");
+    }
 });
 
 app.use("/api/delete", (req, res) => {
-	res.statusCode = 200;
-	res.setHeader("Content-Type", "text/html; charset=utf-8");
-	res.end(api.deletePostIt(req.query.id));
+    try {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+        res.end(api.deletePostIt(req.query.id));
+    } catch (e) {
+        res.statusCode = 500;
+        console.log(e);
+        res.end("Internal server error");
+    }
 });
 
 app.use((req, res) => {
