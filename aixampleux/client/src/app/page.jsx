@@ -8,7 +8,8 @@ const postItCorrect = (postIt) => {
         title: "",
         text: "",
         subtitle: "",
-        links: [],
+        link: "",
+        linkText: "",
     };
     return {
         id: typeof postIt.id === "number" ? postIt.id : template.id,
@@ -16,23 +17,20 @@ const postItCorrect = (postIt) => {
         text: typeof postIt.text === "string" ? postIt.text : template.text,
         subtitle:
             typeof postIt.subtitle === "string" ? postIt.subtitle : template.subtitle,
-        links: Array.isArray(postIt.links) ? postIt.links : template.links,
+        link: typeof postIt.link === "string" ? postIt.link : template.link,
+        linkText:
+            typeof postIt.linkText === "string" ? postIt.linkText : template.linkText,
     };
 };
 
-export default function Index() {
-    const links = [
-        { id: 2, url: "https://www.google.com", text: "Google" },
-        { id: 3, url: "https://www.bing.com", text: "Bing" },
-    ];
-    const postIt = [
-        { id: 1, title: "Remember to check those web sites", links: links },
-        { id: 2, title: "Remember to check those web sites", links: [] },
-    ];
+export default async function Index() {
+    const postIt = await fetch("http://localhost:4444/PostIts").then((res) =>
+        res.json(),
+    );
+    console.log(postIt, "postIt");
 
     return (
         <div>
-            <a href="https://www.google.com">Google</a>
             {postIt.map((postIt) => {
                 const postItCorrected = postItCorrect(postIt);
                 try {
@@ -42,7 +40,8 @@ export default function Index() {
                             title={postItCorrected.title}
                             text={postItCorrected.text}
                             subtitle={postItCorrected.subtitle}
-                            links={postItCorrected.links}
+                            link={postItCorrected.link}
+                            linkText={postItCorrected.linkText}
                         />
                     );
                 } catch (e) {
