@@ -37,9 +37,9 @@ async function updatePostIt(id, title, text, subtitle, link, linkText) {
 }
 
 async function deletePostIt(id) {
-	db.model.PostIt.findByPk(id).then(async (data) => {
-		await data.destroy();
-	});
+    console.log(id);
+	const data = await db.model.PostIt.findByPk(id) 
+    await data.destroy();
     return {
         message: "PostIt deleted",
         status: 200,

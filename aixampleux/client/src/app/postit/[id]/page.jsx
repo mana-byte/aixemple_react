@@ -1,5 +1,5 @@
 import PostIt from "../postit";
-import { DeleteForm } from "./form";
+import DeleteForm from "./form.jsx";
 
 export default async function Index(context) {
     const { params } = await context;

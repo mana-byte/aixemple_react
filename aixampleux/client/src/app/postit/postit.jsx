@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function PostIt(props) {
     let link = props.link;
-    if (props.link === "") {
-        link = null;
+    if (props.link === "" || props.link === undefined || props.link === null) {
+        link = "/";
     }
     const linkDisplayText = props.linkText === "" ? props.link : props.linkText;
     return (

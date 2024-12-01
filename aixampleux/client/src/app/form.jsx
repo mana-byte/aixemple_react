@@ -30,6 +30,9 @@ export default function FormAdd() {
                 linkText: linkText,
             }),
         });
+        if (rep.status === 200) {
+            window.location.replace("/");
+        }
     };
 
     return (

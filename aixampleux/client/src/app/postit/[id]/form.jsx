@@ -4,12 +4,13 @@ import { useRouter } from "next/router";
 export default function DeleteForm(props) {
     const deletePostit = async (e) => {
         e.preventDefault();
-        const router = useRouter();
-        const rep = await fetch(`http://localhost:4444/api/delete/${props.id}`, {
+        const rep = await fetch(`http://localhost:4444/api/delete?id=${props.id}`, {
             method: "DELETE",
         });
         console.log(rep);
-        router.push("/../..");
+        if (rep.status === 200) {
+            window.location.replace("/");
+        }
     };
 
     return (
