@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { useRouter } from "next/router";
 
 export default function FormAdd() {
     const [title, setTitle] = useState("");
@@ -9,8 +10,14 @@ export default function FormAdd() {
     const [link, setLink] = useState("");
     const [linkText, setLinkText] = useState("");
 
-    const createPostIt = async () => {
-        fetch("http://localhost:4444/api/create", {
+    const createPostIt = async (e) => {
+        if (title === "") {
+            alert("Title cannot be empty");
+            return;
+        }
+        console.log("createPostIt");
+        e.preventDefault();
+        const rep = await fetch("http://localhost:4444/api/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

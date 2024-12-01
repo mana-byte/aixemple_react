@@ -1,9 +1,15 @@
 import Image from "next/image";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Link from "next/link";
 
 export default function PostIt(props) {
+    let link = props.link;
+    if (props.link === "") {
+        link = null;
+    }
     const linkDisplayText = props.linkText === "" ? props.link : props.linkText;
     return (
+        <Link href={props.id !== -1 ? `postit/${props.id}` : link}>
         <div
             className="card postIt"
             style={{ width: "18rem", backgroundColor: "yellow" }}
@@ -12,10 +18,11 @@ export default function PostIt(props) {
                 <h5 className="card-title">{props.title}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{props.subtitle}</h6>
                 <p className="card-text">{props.text}</p>
-                <a href={props.link} className="card-link">
+                <span href={link} className="card-link">
                     {linkDisplayText}
-                </a>
+                </span>
             </div>
         </div>
+        </Link>
     );
 }

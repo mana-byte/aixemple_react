@@ -5,7 +5,7 @@ import FormAdd from "./form";
 
 const postItCorrect = (postIt) => {
     const template = {
-        id: 0,
+        id: -1,
         title: "",
         text: "",
         subtitle: "",
@@ -25,19 +25,21 @@ const postItCorrect = (postIt) => {
 };
 
 export default async function Index() {
-    const postIt = await fetch("http://localhost:4444/PostIts").then((res) =>
+    const postIt = await fetch("http://localhost:4444/PostIts", {
+        cache: "no-store",
+    }).then((res) =>
         res.json(),
     );
-    console.log(postIt, "postIt");
 
     return (
-        <div>
+        <div className="card-container">
             {postIt.map((postIt) => {
                 const postItCorrected = postItCorrect(postIt);
                 try {
                     return (
                         <PostIt
                             key={postItCorrected.id}
+                            id={postItCorrected.id}
                             title={postItCorrected.title}
                             text={postItCorrected.text}
                             subtitle={postItCorrected.subtitle}
