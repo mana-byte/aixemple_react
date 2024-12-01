@@ -3,5 +3,9 @@
     border: 1px solid #000 !important;
     border-radius: 0px !important;
     border-top: 5px solid #000 !important;
+}
 
+.center {
+    text-align: center;
+    justify-content: center;
 }

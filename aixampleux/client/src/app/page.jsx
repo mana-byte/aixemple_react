@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import PostIt from "./postit/postit";
+import FormAdd from "./form";
 
 const postItCorrect = (postIt) => {
     const template = {
@@ -48,6 +49,7 @@ export default async function Index() {
                     console.log(e);
                 }
             })}
+            <FormAdd />
         </div>
     );
 }
