@@ -1,5 +1,6 @@
 import PostIt from "../postit";
-import DeleteForm from "./form.jsx";
+import { DeleteForm } from "./form.jsx";
+import UpdateForm from "./form.jsx";
 
 export default async function Index(context) {
     const { params } = await context;
@@ -25,8 +26,8 @@ export default async function Index(context) {
 
     return (
         <div>
-            <PostIt
-                id={-1}
+            <UpdateForm
+                id={postIt.id}
                 title={postIt.title}
                 text={postIt.text}
                 subtitle={postIt.subtitle}

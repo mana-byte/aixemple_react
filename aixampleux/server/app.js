@@ -22,29 +22,39 @@ async function newPostIt(title, text, subtitle, link, linkText) {
 async function findPostIt(id) {
 	console.log(id);
 	const data = await db.model.PostIt.findByPk(id);
-    return data.toJSON();
+	return data.toJSON();
 }
 
 async function updatePostIt(id, title, text, subtitle, link, linkText) {
-	db.model.PostIt.findByPk(id).then(async (data) => {
-		(data.title = title),
-			(data.text = text),
-			(data.subtitle = subtitle),
-			(data.link = link),
-			(data.linkText = linkText);
-		await data.save();
-	});
+	const data = await db.model.PostIt.findByPk(id);
+    await data.update({
+        title: title,
+        text: text,
+        subtitle: subtitle,
+        link: link,
+        linkText: linkText,
+    });
+    return {
+        message: "PostIt updated",
+        status: 200,
+        id: id,
+        title: title,
+        text: text,
+        subtitle: subtitle,
+        link: link,
+        linkText: linkText,
+    };
 }
 
 async function deletePostIt(id) {
-    console.log(id);
-	const data = await db.model.PostIt.findByPk(id) 
-    await data.destroy();
-    return {
-        message: "PostIt deleted",
-        status: 200,
-        id: id,
-    };
+	console.log(id);
+	const data = await db.model.PostIt.findByPk(id);
+	await data.destroy();
+	return {
+		message: "PostIt deleted",
+		status: 200,
+		id: id,
+	};
 }
 
 async function getPostIts() {

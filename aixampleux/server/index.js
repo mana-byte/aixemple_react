@@ -48,11 +48,10 @@ app.post("/api/create", (req, res) => {
 	}
 });
 
-app.post("/api/update", (req, res) => {
+app.post("/api/update",async (req, res) => {
 	try {
         const { id, title, text, subtitle, link, linkText } = req.body;
-		res.statusCode = 200;
-		res.end(api.updatePostIt(id, title, text, subtitle, link, linkText));
+		res.json(await api.updatePostIt(id, title, text, subtitle, link, linkText));
 	} catch (e) {
 		res.statusCode = 500;
 		console.log(e);
