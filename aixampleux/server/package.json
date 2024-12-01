@@ -8,8 +8,9 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "type":"module",
+  "type": "module",
   "dependencies": {
+    "express": "^4.21.1",
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7"
   }
