@@ -23,7 +23,7 @@ app.get("/PostIts/:id", (req, res) => {
     try {
         res.statusCode = 200;
         res.setHeader("Content-Type", "text/html; charset=utf-8");
-        res.end(api.findPostIt(req.params.id));
+        res.end(api.findPostIt(req.body.id));
     } catch (e) {
         res.statusCode = 500;
         console.log(e);
@@ -33,9 +33,10 @@ app.get("/PostIts/:id", (req, res) => {
 
 app.post("/api/create", (req, res) => {
     try {
+        title, text, subtitle, link, linkText = req.body;
         res.statusCode = 200;
-        res.setHeader("Content-Type", "text/html; charset=utf-8");
-        res.end(api.newPostIt(req.query.title, req.query.content));
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+        res.end(api.newPostIt(title, text, subtitle, link, linkText));
     } catch (e) {
         res.statusCode = 500;
         console.log(e);
@@ -45,9 +46,10 @@ app.post("/api/create", (req, res) => {
 
 app.post("/api/update", (req, res) => {
     try {
+        id, title, text, subtitle, link, linkText = req.body;
         res.statusCode = 200;
-        res.setHeader("Content-Type", "text/html; charset=utf-8");
-        res.end(api.updatePostIt(req.query.id, req.query.title, req.query.content));
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+        res.end(api.updatePostIt(id, title, text, subtitle, link, linkText));
     } catch (e) {
         res.statusCode = 500;
         console.log(e);
