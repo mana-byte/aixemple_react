@@ -9,7 +9,7 @@ export default function PostIt(props) {
     }
     const linkDisplayText = props.linkText === "" ? props.link : props.linkText;
     return (
-        <Link href={props.id !== -1 ? `postit/${props.id}` : link}>
+        <Link className="no-underline" href={props.id !== -1 ? `postit/${props.id}` : link}>
         <div
             className="card postIt"
             style={{ width: "18rem", backgroundColor: "yellow" }}
