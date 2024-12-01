@@ -1,4 +1,4 @@
-import express from "express"; // might change, thus was not added to package.json for now
+import express from "express";
 
 import api from "./app.js";
 
@@ -8,9 +8,15 @@ const hostname = "127.0.0.1";
 const port = 4444;
 
 app.get("/PostIts", async (req, res) => {
-	res.statusCode = 200;
-	res.setHeader("Content-Type", "text/html; charset=utf-8");
-	res.json(await api.getPostIts());
+	try {
+		res.statusCode = 200;
+		res.setHeader("Content-Type", "text/html; charset=utf-8");
+		res.json(await api.getPostIts());
+	} catch (e) {
+		res.statusCode = 500;
+		console.log(e);
+		res.end("Internal server error");
+	}
 });
 
 app.get("/PostIts/:id", (req, res) => {
