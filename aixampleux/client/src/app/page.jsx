@@ -1,8 +1,8 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 import PostIt from "./postit/postit";
 import FormAdd from "./form";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import styles from "./page.module.css";
 
 const postItCorrect = (postIt) => {
     const template = {
@@ -33,26 +33,34 @@ export default async function Index() {
     );
 
     return (
-        <div className="card-container">
-            {postIt.map((postIt) => {
-                const postItCorrected = postItCorrect(postIt);
-                try {
-                    return (
-                        <PostIt
-                            key={postItCorrected.id}
-                            id={postItCorrected.id}
-                            title={postItCorrected.title}
-                            text={postItCorrected.text}
-                            subtitle={postItCorrected.subtitle}
-                            link={postItCorrected.link}
-                            linkText={postItCorrected.linkText}
-                        />
-                    );
-                } catch (e) {
-                    console.log(e);
-                }
-            })}
+
+        <div className={styles.myPageContainer}>
+            <div className={styles.navbar}>
+                <h1 className={styles.navTitle}>gestion des post-its</h1>
+            </div>
+            <div className={styles.mainContainer}>
+                <div className={styles.cardContainer}>
+                {postIt.map((postIt) => {
+                    const postItCorrected = postItCorrect(postIt);
+                    try {
+                        return (
+                            <PostIt
+                                key={postItCorrected.id}
+                                id={postItCorrected.id}
+                                title={postItCorrected.title}
+                                text={postItCorrected.text}
+                                subtitle={postItCorrected.subtitle}
+                                link={postItCorrected.link}
+                                linkText={postItCorrected.linkText}
+                            />
+                        );
+                    } catch (e) {
+                        console.log(e);
+                    }
+                })}
+                </div>
             <FormAdd />
+            </div>
         </div>
     );
 }
