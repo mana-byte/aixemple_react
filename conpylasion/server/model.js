@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const sequelize = new Sequelize({
     host: "localhost",
     dialect: "sqlite",
+    storage: path.join(__dirname, 'database.sqlite'),
     logging: false,
 });
 

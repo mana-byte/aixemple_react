@@ -11,6 +11,14 @@ async function initDB() {
 		name: "Jean",
 		surname: "Michel",
 	});
+    data = await sequelize.model.User.create({
+        name: "Jean",
+        surname: "Pierre",
+    });
+    data = await sequelize.model.User.create({
+        name: "Jean",
+        surname: "Paul",
+    });
 }
 
 initDB().then(() => {
