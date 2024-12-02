@@ -1,4 +1,3 @@
-import Image from "next/image";
 import PostIt from "./postit/postit";
 import FormAdd from "./form";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";

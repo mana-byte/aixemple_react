@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Link from "next/link";
 import HoverLink from "./HoverLink";
 import { useRouter } from "next/navigation";
 
@@ -9,7 +7,6 @@ export default function PostIt(props) {
     let link = props.link;
     const router = useRouter();
     function clickHandler(e) {
-        e.preventDefault();
         if (props.id !== -1) {
             router.push(`postit/${props.id}`);
         }
