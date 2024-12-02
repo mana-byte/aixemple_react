@@ -18,7 +18,8 @@
     justify-content: center;
 }
 .no-underline {
-    text-decoration: none;
+    text-decoration: none !important;
+    text-color: black !important;
 }
 .card-container {
     display: grid;
