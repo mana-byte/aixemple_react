@@ -6,7 +6,9 @@ export default function HoverLink(props) {
         <div className={styles.container}>
             <div>{props.linktext}</div>
             <div className={styles.link}>
-                <Link href={props.link}>{props.link}</Link>
+                <Link href={props.link} onClick={(e) => e.stopPropagation()}>
+                    {props.link}
+                </Link>
             </div>
         </div>
     );
