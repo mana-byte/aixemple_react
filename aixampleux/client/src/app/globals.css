@@ -1,8 +1,16 @@
 .postIt {
     margin: 20px;
-    border: 1px solid #000 !important;
-    border-radius: 0px !important;
-    border-top: 5px solid #000 !important;
+    background-color: #fff9c4;
+    border: 1px solid #f0e68c;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px; 
+    transition: transform 0.2s, box-shadow 0.2s; 
+}
+
+.postIt:hover {
+    transform: translateY(-4px); 
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .center {
